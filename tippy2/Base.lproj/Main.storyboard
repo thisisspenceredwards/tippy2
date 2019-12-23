@@ -74,7 +74,7 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <connections>
-                                    <action selector="percentageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="vP0-2Q-96d"/>
+                                    <action selector="percentageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Fn7-m6-AxZ"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
@@ -88,7 +88,8 @@
                     <navigationItem key="navigationItem" title="Tip Calculator" id="QS5-0s-JtJ">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="hZK-FC-w7b">
                             <connections>
-                                <segue destination="J6K-kv-rqg" kind="push" id="o4C-3z-vxA"/>
+                                <action selector="goToSettings:" destination="BYZ-38-t0r" id="6he-xW-r4x"/>
+                                <segue destination="Dkb-xL-w17" kind="show" id="WY2-yi-lPT"/>
                             </connections>
                         </barButtonItem>
                         <connections>
@@ -98,7 +99,7 @@
                     <connections>
                         <outlet property="billField" destination="lJX-D6-Pq3" id="fD3-WG-Rqu"/>
                         <outlet property="peopleController" destination="xab-Iz-nPQ" id="RpB-ZO-qUb"/>
-                        <outlet property="percentageController" destination="5Xl-ZH-K2f" id="LCC-C7-wnb"/>
+                        <outlet property="percentageController" destination="5Xl-ZH-K2f" id="iYI-cx-BeS"/>
                         <outlet property="tipLabel" destination="SAk-7e-X1G" id="2NZ-86-455"/>
                         <outlet property="totalLabel" destination="Wfg-yJ-gYf" id="inl-ym-cnY"/>
                     </connections>
@@ -110,7 +111,24 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="807.20000000000005" y="109.29535232383809"/>
+            <point key="canvasLocation" x="1520.8" y="-80.50974512743629"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="47f-w5-Wor">
+            <objects>
+                <navigationController id="Dkb-xL-w17" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="9SO-2C-lMH"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p15-hu-AL3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="J6K-kv-rqg" kind="relationship" relationship="rootViewController" id="cFW-Lm-M16"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ITH-dI-76h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2313" y="-81"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ubq-cM-W2c">
@@ -120,6 +138,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jfG-cv-qec">
+                                <rect key="frame" x="0.0" y="102" width="375" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <segments>
+                                    <segment title="10%"/>
+                                    <segment title="15%"/>
+                                    <segment title="20%"/>
+                                    <segment title="25%"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <connections>
+                                    <action selector="percentageChanged2:" destination="J6K-kv-rqg" eventType="valueChanged" id="RtC-84-jAK"/>
+                                </connections>
+                            </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ucb-Ch-aef">
                                 <rect key="frame" x="0.0" y="281" width="375" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -136,57 +169,43 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="peopleChanged:" destination="J6K-kv-rqg" eventType="valueChanged" id="opz-Vy-Q43"/>
-                                    <action selector="peopleChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="yZb-SV-nJV"/>
-                                </connections>
-                            </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jfG-cv-qec">
-                                <rect key="frame" x="0.0" y="102" width="375" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <segments>
-                                    <segment title="10%"/>
-                                    <segment title="15%"/>
-                                    <segment title="20%"/>
-                                    <segment title="25%"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                <connections>
-                                    <action selector="percentageChanged:" destination="J6K-kv-rqg" eventType="valueChanged" id="B59-F4-b1i"/>
-                                    <action selector="percentageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="pgz-hF-fwT"/>
+                                    <action selector="peopleChanged2:" destination="J6K-kv-rqg" eventType="valueChanged" id="YPB-Cb-zLh"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="D9V-KE-62v"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="dF0-2t-VMT"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="peopleController" destination="Ucb-Ch-aef" id="oDF-s3-wi1"/>
-                        <outlet property="percentageController" destination="jfG-cv-qec" id="ccj-W5-uL3"/>
+                        <outlet property="peopleController2" destination="Ucb-Ch-aef" id="yvn-g7-Obm"/>
+                        <outlet property="percentageController2" destination="jfG-cv-qec" id="6eC-Fz-sWL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdQ-ZH-fy9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1480.8" y="108.39580209895054"/>
+            <point key="canvasLocation" x="3025" y="-81"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ShU-et-OcF">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEC-HL-wJZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0Nn-sB-Glq" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="rzX-7L-veM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8tM-Vy-f4M">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="iYs-lP-5vd"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4x7-Wy-tES"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aEC-HL-wJZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="110.49107142857143"/>
+            <point key="canvasLocation" x="514" y="-81"/>
         </scene>
     </scenes>
 </document>

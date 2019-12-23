@@ -10,46 +10,45 @@ import UIKit
 
 class Settings: UIViewController {
     let defaults = UserDefaults.standard
-   
-    //@IBOutlet weak var percentageController: UISegmentedControl!
-    //  @IBOutlet weak var test: UISegmentedControl!
-    
-    @IBOutlet weak var percentageController: UISegmentedControl!
-   
-    @IBOutlet weak var peopleController: UISegmentedControl!
-    //  @IBOutlet weak var percentageController: UISegmentedControl!
-    // @IBOutlet weak var percentageController: UISegmentedControl!
-   // @IBOutlet weak var peopleController: UISegmentedControl!
-    //let defaults = UserDefaults.standard
-    override func viewDidLoad() {
+    @IBOutlet weak var percentageController2: UISegmentedControl!
+    @IBOutlet weak var peopleController2: UISegmentedControl!
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool)
     {
-        percentageController.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
-        peopleController.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
+        percentageController2.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
+        peopleController2.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
     }
-    @IBAction func percentageChanged(_ sender: Any)
+    @IBAction func percentageChanged2(_ sender: Any)
     {
-        let seg = percentageController.selectedSegmentIndex
+        let seg = percentageController2.selectedSegmentIndex
         defaults.set(seg, forKey: "myPercent")
         defaults.synchronize()
     }
 
-    @IBAction func peopleChanged(_ sender: Any)
+    @IBAction func peopleChanged2(_ sender: Any)
     {
-        let peeps = peopleController.selectedSegmentIndex
+        let peeps = peopleController2.selectedSegmentIndex
         print("this is bo peep")
         print(peeps)
         defaults.set(peeps, forKey: "myPeople")
         defaults.synchronize()
     }
- 
+
+   
+   
+     
+     //dismiss(animated: false, completion: nil)
+      //   performSegue(withIdentifier: "mainSegue", sender: nil)
+    }
+ //*/
     /*
     // MARK: - Navigation
-
+     @IBAction func goBack(_ sender: Any) {
+     }
+     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
@@ -57,4 +56,4 @@ class Settings: UIViewController {
     }
     */
 
-}
+

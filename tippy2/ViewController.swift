@@ -16,19 +16,17 @@ class ViewController: UIViewController {
       var open = true
     @IBOutlet weak var peopleController: UISegmentedControl!
     @IBOutlet weak var percentageController: UISegmentedControl!
-    // @IBOutlet weak var numberOfPeopleController: UISegmentedControl!
-   // @IBOutlet weak var tipControl: UISegmentedControl!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if(open == true)
-        {
-            billField.becomeFirstResponder()
-            open = false
-        }
+     //   if(open == true)
+     //   {
+     //       billField.becomeFirstResponder()
+     //       open = false
+     //   }
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool)
@@ -75,16 +73,18 @@ class ViewController: UIViewController {
         self.tipLabel.alpha = 1.0
         self.totalLabel.alpha = 1.0
         }
-        billField.becomeFirstResponder()
+       // billField.becomeFirstResponder()
         // Show keyboard by default
         
     }
+    
     @IBAction func ontap(_ sender: Any)
     {
         view.endEditing(true)
     }
     @IBAction func percentageChanged(_ sender: Any)
     {
+        print("percentageChanged")
         startPercent = false
         let seg = percentageController.selectedSegmentIndex
         defaults.set(seg, forKey: "myPercent")
@@ -148,7 +148,13 @@ class ViewController: UIViewController {
             
             
         }
-    
+    @IBAction func goToSettingSegue(_ sender: Any)
+    {
+        print("segue")
+        performSegue(withIdentifier: "settingSegue", sender: nil)
+    }
+   
+   
     /*
         @IBAction func startFade(_ sender: AnyObject) {
 
