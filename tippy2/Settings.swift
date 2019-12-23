@@ -26,7 +26,11 @@ class Settings: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        percentageController.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
+        peopleController.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
+    }
     @IBAction func percentageChanged(_ sender: Any)
     {
         let seg = percentageController.selectedSegmentIndex

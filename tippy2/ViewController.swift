@@ -54,19 +54,6 @@ class ViewController: UIViewController {
                               var percentage = 0
                               var peeps = 0
                                 
-                        /*     if(startPerson == true)
-                             {
-                                 startPerson = false
-                                 
-                                 defaults.set(peeps, forKey: "myPeople")
-                             }
-                             else if(startPercent == true)
-                             {
-                                 startPercent = false
-                                 defaults.set(percentage, forKey: "myPercent")
-                             }
-                             else
-                             {*/
                                 percentage = defaults.integer(forKey: "myPercent")
                                 print("percentage:")
                                 print(percentage)
