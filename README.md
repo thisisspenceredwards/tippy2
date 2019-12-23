@@ -1,16 +1,16 @@
-# Pre-work - *Name of App Here*
+# Pre-work - *Tippy2*
 
 **Name of your app** is a tip calculator application for iOS.
 
-Submitted by: **Your Name Here**
+Submitted by: **Spencer Edwards**
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is complete:
 
-* [ ] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
+* [X] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
 
 The following **optional** features are implemented:
 * [X] Settings page to change the default tip percentage.
@@ -33,7 +33,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I am very new to swift and IOS, ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools.   The settings page works(ish) -- has some bugs.  Something I haven't been able to figure out is why when but as it stands this is my submission.
+I am very new to swift and IOS development, I ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools.   The settings page works(ish) -- has some bugs.  
 
 ## License
 
