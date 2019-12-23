@@ -14,7 +14,7 @@ The following **required** functionality is complete:
 
 The following **optional** features are implemented:
 * [X] Settings page to change the default tip percentage.
-* [ ] UI animations
+* [X] UI animations
 * [ ] Remembering the bill amount across app restarts (if <10mins)
 * [ ] Using locale-specific currency and currency thousands separators.
 * [X] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
@@ -33,7 +33,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I am very new to swift and IOS development, I ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools.   The settings page works(ish) -- has some bugs.  
+I am brand new to swift and IOS development, I ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools.   The settings page works(ish) -- has some bugs. The animation added is a simple 1 second fade in of each label on the main screen.
 
 ## License
 
