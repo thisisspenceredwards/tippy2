@@ -33,7 +33,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I am brand new to swift and IOS development, I ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools.   The settings page works(ish) -- has some bugs. The animation added is a simple 1 second fade in of each label on the main screen.
+I am brand new to swift and IOS development, I ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools. The animation added is a simple 1 second fade in of each label on the main screen.
 
 ## License
 
