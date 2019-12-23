@@ -35,7 +35,9 @@ class ViewController: UIViewController {
     {
         print("hereO")
         super.viewWillAppear(animated)  //bad repeated code below, would make helper function if i was more familiar with swift
-               
+               self.billField.alpha = 0
+               self.tipLabel.alpha = 0
+               self.totalLabel.alpha = 0
                let bill = Double(billField.text!) ?? 0.0
                                if(bill <= 0.0)
                                {
@@ -81,6 +83,11 @@ class ViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        UIView.animate(withDuration: 1.0) {
+        self.billField.alpha = 1.0
+        self.tipLabel.alpha = 1.0
+        self.totalLabel.alpha = 1.0
+        }
         billField.becomeFirstResponder()
         // Show keyboard by default
         
@@ -154,6 +161,23 @@ class ViewController: UIViewController {
             
             
         }
-        
+    
+    /*
+        @IBAction func startFade(_ sender: AnyObject) {
+
+            label.alpha = 0.0
+
+            // fade in
+            UIView.animate(withDuration: 2.0, animations: {
+                label.alpha = 1.0
+            }) { (finished) in
+                // fade out
+                UIView.animate(withDuration: 2.0, animations: {
+                    label.alpha = 0.0
+                })
+            }
+ 
+        }
+*/
 }
 
