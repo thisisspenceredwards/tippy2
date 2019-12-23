@@ -14,36 +14,47 @@ class ViewController: UIViewController {
       var startPercent = true
       var startPerson = true
       var open = true
+      var first = true
     @IBOutlet weak var peopleController: UISegmentedControl!
     @IBOutlet weak var percentageController: UISegmentedControl!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   if(open == true)
-     //   {
-     //       billField.becomeFirstResponder()
-     //       open = false
-     //   }
-        // Do any additional setup after loading the view.
+        print("viewdidload")
+        if(open == true)
+        {
+            billField.becomeFirstResponder()
+            open = false
+           // percentageController.selectedSegmentIndex = 0
+           // peopleController.selectedSegmentIndex = 0
+        }
     }
+ 
+    
     override func viewWillAppear(_ animated: Bool)
     {
-        print("hereO")
+       
         super.viewWillAppear(animated)  //bad repeated code below, would make helper function if i was more familiar with swift
                self.billField.alpha = 0
                self.tipLabel.alpha = 0
                self.totalLabel.alpha = 0
-               let bill = Double(billField.text!) ?? 0.0
-                               if(bill <= 0.0)
-                               {
-                                   tipLabel.text = String(format:"$%.2f", 0.0)
-                                   totalLabel.text = String(format:"$%.2f", 0.0)
-                               }
-                               else
-                               {
+               let bill =
+                Double(billField.text!) ?? 0.0
+        if(first == true)
+        {
+            percentageController.selectedSegmentIndex = 0
+            peopleController.selectedSegmentIndex = 0
+            first = false
+        }
+        else
+        {
+               percentageController.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
+               peopleController.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
+        }
                                let defaults = UserDefaults.standard
                                let percentArray = [0.1, 0.15, 0.2, 0.25]
                                let peopleArray = [ 1, 2, 3, 4, 5, 6, 7, 8,]
@@ -58,28 +69,38 @@ class ViewController: UIViewController {
                                 peeps = defaults.integer(forKey: "myPeople")
                                 print("this is first peep")
                                 print(peeps)
-                             
+                             if(bill <= 0.0)
+                            {
+                                tipLabel.text = String(format:"$%.2f", 0.0)
+                                    totalLabel.text = String(format:"$%.2f", 0.0)
+                            }
+                            else
+                             {
                              let tip = bill * percentArray[percentage]
                              let total = (bill + tip)/Double(peopleArray[peeps])
                              tipLabel.text = String(format:"$%.2f", tip)
                              totalLabel.text = String(format: "$%.2f", total)
-        }
+                            }
+    
+                    
                 
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("viewdidappear")
         UIView.animate(withDuration: 1.0) {
         self.billField.alpha = 1.0
         self.tipLabel.alpha = 1.0
         self.totalLabel.alpha = 1.0
         }
-       // billField.becomeFirstResponder()
-        // Show keyboard by default
+        
         
     }
     
     @IBAction func ontap(_ sender: Any)
     {
+        print("ontap")
         view.endEditing(true)
     }
     @IBAction func percentageChanged(_ sender: Any)
@@ -96,8 +117,6 @@ class ViewController: UIViewController {
     {
         startPerson = false
         let peeps = peopleController.selectedSegmentIndex
-        print("this is bo peep")
-        print(peeps)
         defaults.set(peeps, forKey: "myPeople")
         defaults.synchronize()
         calculateTip(sender)
@@ -147,30 +166,6 @@ class ViewController: UIViewController {
                      }
             
             
-        }
-    @IBAction func goToSettingSegue(_ sender: Any)
-    {
-        print("segue")
-        performSegue(withIdentifier: "settingSegue", sender: nil)
     }
-   
-   
-    /*
-        @IBAction func startFade(_ sender: AnyObject) {
-
-            label.alpha = 0.0
-
-            // fade in
-            UIView.animate(withDuration: 2.0, animations: {
-                label.alpha = 1.0
-            }) { (finished) in
-                // fade out
-                UIView.animate(withDuration: 2.0, animations: {
-                    label.alpha = 0.0
-                })
-            }
- 
-        }
-*/
+    
 }
-

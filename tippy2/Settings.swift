@@ -15,6 +15,7 @@ class Settings: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
     }
     override func viewWillAppear(_ animated: Bool)
     {
@@ -27,7 +28,7 @@ class Settings: UIViewController {
         defaults.set(seg, forKey: "myPercent")
         defaults.synchronize()
     }
-
+   
     @IBAction func peopleChanged2(_ sender: Any)
     {
         let peeps = peopleController2.selectedSegmentIndex

@@ -88,13 +88,9 @@
                     <navigationItem key="navigationItem" title="Tip Calculator" id="QS5-0s-JtJ">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="hZK-FC-w7b">
                             <connections>
-                                <action selector="goToSettings:" destination="BYZ-38-t0r" id="6he-xW-r4x"/>
-                                <segue destination="Dkb-xL-w17" kind="show" id="WY2-yi-lPT"/>
+                                <segue destination="J6K-kv-rqg" kind="show" id="fQT-e9-Dgh"/>
                             </connections>
                         </barButtonItem>
-                        <connections>
-                            <outlet property="titleView" destination="8bC-Xf-vdC" id="uSf-BC-blG"/>
-                        </connections>
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="lJX-D6-Pq3" id="fD3-WG-Rqu"/>
@@ -112,23 +108,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1520.8" y="-80.50974512743629"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="47f-w5-Wor">
-            <objects>
-                <navigationController id="Dkb-xL-w17" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="9SO-2C-lMH"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="p15-hu-AL3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="J6K-kv-rqg" kind="relationship" relationship="rootViewController" id="cFW-Lm-M16"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ITH-dI-76h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2313" y="-81"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ubq-cM-W2c">
@@ -186,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IdQ-ZH-fy9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3025" y="-81"/>
+            <point key="canvasLocation" x="3024.8000000000002" y="-81.409295352323838"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ShU-et-OcF">
@@ -201,7 +180,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4x7-Wy-tES"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="3cU-MD-G2p"/>
                     </connections>
                 </navigationController>
             </objects>
