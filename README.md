@@ -1,8 +1,52 @@
-Basic functionality works.
-Ran into several problems relating to git 
-and implementing the setting functionality.
+# Pre-work - *Name of App Here*
 
-Implemented a simple additional function to divide the total by the number of people present
+**Name of your app** is a tip calculator application for iOS.
 
-I will continue working on it but my submital 
-will not have the settings implemented.
+Submitted by: **Your Name Here**
+
+Time spent: **X** hours spent in total
+
+## User Stories
+
+The following **required** functionality is complete:
+
+* [ ] User can enter a bill amount, choose a tip percentage, and see the tip and total values.
+
+The following **optional** features are implemented:
+* [X] Settings page to change the default tip percentage.
+* [ ] UI animations
+* [ ] Remembering the bill amount across app restarts (if <10mins)
+* [ ] Using locale-specific currency and currency thousands separators.
+* [X] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
+
+The following **additional** features are implemented:
+
+- [ ] List anything else that you can get done to improve the app functionality!
+
+## Video Walkthrough 
+
+Here's a walkthrough of implemented user stories:
+
+<img src='http://g.recordit.co/SLidxhjQL2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+
+I am very new to swift and IOS, ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools.   The settings page works(ish) -- has some bugs.  Something I haven't been able to figure out is why when you go back to the main page from the settings the segments become unusable.  
+
+## License
+
+    Copyright [2019] [Spencer Edwards]
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
