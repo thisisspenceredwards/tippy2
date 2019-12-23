@@ -33,7 +33,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I am very new to swift and IOS, ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools.   The settings page works(ish) -- has some bugs.  Something I haven't been able to figure out is why when you go back to the main page from the settings the segments become unusable.  
+I am very new to swift and IOS, ran into lots of time consuming bumps that are a necessary part of learning a new language/set of tools.   The settings page works(ish) -- has some bugs.  Something I haven't been able to figure out is why when but as it stands this is my submission.
 
 ## License
 
