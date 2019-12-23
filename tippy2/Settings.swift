@@ -9,34 +9,39 @@
 import UIKit
 
 class Settings: UIViewController {
-
-    @IBOutlet weak var percentageController: UISegmentedControl!
+    let defaults = UserDefaults.standard
+   
+    //@IBOutlet weak var percentageController: UISegmentedControl!
     //  @IBOutlet weak var test: UISegmentedControl!
-  //  @IBOutlet weak var percentageController: UISegmentedControl!
+    
+    @IBOutlet weak var percentageController: UISegmentedControl!
+   
+    @IBOutlet weak var peopleController: UISegmentedControl!
+    //  @IBOutlet weak var percentageController: UISegmentedControl!
     // @IBOutlet weak var percentageController: UISegmentedControl!
    // @IBOutlet weak var peopleController: UISegmentedControl!
-   // let defaults = UserDefaults.standard
+    //let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-  //  @IBAction func percentageChanged(_ sender: Any)
-  //  {
-       // let percentArray = [ 0.10, 0.15, 0.20, 0.25,]
-       // let seg = percentageController.selectedSegmentIndex
-       // defaults.set(percentArray[seg], forKey: "myPercent")
-       // defaults.synchronize()
-  //  }
+    @IBAction func percentageChanged(_ sender: Any)
+    {
+        let seg = percentageController.selectedSegmentIndex
+        defaults.set(seg, forKey: "myPercent")
+        defaults.synchronize()
+    }
 
-  //  @IBAction func peopleChanged(_ sender: Any)
-   // {
-       // let peopleArray = [ 1, 2, 3, 4, 5, 6, 7, 8,]
-       // let peeps = peopleController.selectedSegmentIndex
-       // defaults.set(peopleArray[peeps], forKey: "myPeople")
-      //  defaults.synchronize()
-    //}
+    @IBAction func peopleChanged(_ sender: Any)
+    {
+        let peeps = peopleController.selectedSegmentIndex
+        print("this is bo peep")
+        print(peeps)
+        defaults.set(peeps, forKey: "myPeople")
+        defaults.synchronize()
+    }
  
     /*
     // MARK: - Navigation

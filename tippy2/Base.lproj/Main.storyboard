@@ -43,8 +43,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qT3-Yj-MhN">
-                                <rect key="frame" x="0.0" y="306" width="375" height="32"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xab-Iz-nPQ">
+                                <rect key="frame" x="0.0" y="308" width="375" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <segments>
@@ -59,11 +59,11 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="h02-EE-b2M"/>
+                                    <action selector="peopleChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="wNu-gL-2a5"/>
                                 </connections>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vFC-nT-AeE">
-                                <rect key="frame" x="0.0" y="266" width="375" height="41"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Xl-ZH-K2f">
+                                <rect key="frame" x="0.0" y="268" width="375" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <segments>
@@ -74,7 +74,7 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                 <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="Hof-Sk-L2Y"/>
+                                    <action selector="percentageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="vP0-2Q-96d"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
@@ -86,14 +86,19 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Tip Calculator" id="QS5-0s-JtJ">
+                        <barButtonItem key="rightBarButtonItem" title="Settings" id="hZK-FC-w7b">
+                            <connections>
+                                <segue destination="J6K-kv-rqg" kind="push" id="o4C-3z-vxA"/>
+                            </connections>
+                        </barButtonItem>
                         <connections>
                             <outlet property="titleView" destination="8bC-Xf-vdC" id="uSf-BC-blG"/>
                         </connections>
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="lJX-D6-Pq3" id="fD3-WG-Rqu"/>
-                        <outlet property="numberOfPeopleController" destination="qT3-Yj-MhN" id="aOW-Jw-Fvm"/>
-                        <outlet property="tipControl" destination="vFC-nT-AeE" id="np1-k6-aU4"/>
+                        <outlet property="peopleController" destination="xab-Iz-nPQ" id="RpB-ZO-qUb"/>
+                        <outlet property="percentageController" destination="5Xl-ZH-K2f" id="LCC-C7-wnb"/>
                         <outlet property="tipLabel" destination="SAk-7e-X1G" id="2NZ-86-455"/>
                         <outlet property="totalLabel" destination="Wfg-yJ-gYf" id="inl-ym-cnY"/>
                     </connections>
@@ -106,6 +111,64 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="807.20000000000005" y="109.29535232383809"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="ubq-cM-W2c">
+            <objects>
+                <viewController id="J6K-kv-rqg" customClass="Settings" customModule="tippy2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UlV-v5-TJx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ucb-Ch-aef">
+                                <rect key="frame" x="0.0" y="281" width="375" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                <segments>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                    <segment title="4"/>
+                                    <segment title="5"/>
+                                    <segment title="6"/>
+                                    <segment title="7"/>
+                                    <segment title="8"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="peopleChanged:" destination="J6K-kv-rqg" eventType="valueChanged" id="opz-Vy-Q43"/>
+                                    <action selector="peopleChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="yZb-SV-nJV"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jfG-cv-qec">
+                                <rect key="frame" x="0.0" y="102" width="375" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <segments>
+                                    <segment title="10%"/>
+                                    <segment title="15%"/>
+                                    <segment title="20%"/>
+                                    <segment title="25%"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <connections>
+                                    <action selector="percentageChanged:" destination="J6K-kv-rqg" eventType="valueChanged" id="B59-F4-b1i"/>
+                                    <action selector="percentageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="pgz-hF-fwT"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="D9V-KE-62v"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dF0-2t-VMT"/>
+                    <connections>
+                        <outlet property="peopleController" destination="Ucb-Ch-aef" id="oDF-s3-wi1"/>
+                        <outlet property="percentageController" destination="jfG-cv-qec" id="ccj-W5-uL3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IdQ-ZH-fy9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1480.8" y="108.39580209895054"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ShU-et-OcF">
