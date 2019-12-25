@@ -10,6 +10,7 @@ import UIKit
 
 class Settings: UIViewController {
     let defaults = UserDefaults.standard
+    var start = true
     @IBOutlet weak var percentageController2: UISegmentedControl!
     @IBOutlet weak var peopleController2: UISegmentedControl!
     override func viewDidLoad()
@@ -17,10 +18,39 @@ class Settings: UIViewController {
         super.viewDidLoad()
         
     }
+    
     override func viewWillAppear(_ animated: Bool)
     {
+        let temp = defaults.string(forKey: "myInterface")
+        if(temp == ".dark") { overrideUserInterfaceStyle = .dark }
+        else { overrideUserInterfaceStyle = .light; defaults.set(".light", forKey: "myInterface") }
+        /*
+        if(start == true)
+        {
+            print("NOT HERE PLEASE")
+            overrideUserInterfaceStyle = .dark
+            defaults.set(".dark", forKey: "myInterface")
+            start = false
+        }
+        */
         percentageController2.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
         peopleController2.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
+    }
+    
+    
+    @IBAction func setUserInterfaceStyle(_ sender: Any)
+    {
+        let temp = defaults.string(forKey: "myInterface")
+        if(temp == ".dark")
+        {
+            defaults.set(".light", forKey: "myInterface")
+            overrideUserInterfaceStyle = .light
+        }
+        else
+        {
+            defaults.set(".dark", forKey: "myInterface")
+            overrideUserInterfaceStyle = .dark
+        }
     }
     @IBAction func percentageChanged2(_ sender: Any)
     {

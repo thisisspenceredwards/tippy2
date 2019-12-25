@@ -10,11 +10,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-      let defaults = UserDefaults.standard
-      var startPercent = true
-      var startPerson = true
-      var open = true
-      var first = true
+    let defaults = UserDefaults.standard
+    var startPercent = true
+    var startPerson = true
+    var open = true
+    var first = true
+    var startTime = NSDate()
     var currency = "$"
     @IBOutlet weak var peopleController: UISegmentedControl!
     @IBOutlet weak var percentageController: UISegmentedControl!
@@ -22,9 +23,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     
- 
-    
-    
+   // func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool
+    // {
+    //  return true
+   // }
+
+    //func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool
+    //{
+     // return true
+    //}
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewdidload")
@@ -33,26 +40,49 @@ class ViewController: UIViewController {
             billField.text = "$"
             billField.becomeFirstResponder()
             open = false
+            defaults.set(".dark", forKey: "myInterface")
+            overrideUserInterfaceStyle = .dark
            // percentageController.selectedSegmentIndex = 0
            // peopleController.selectedSegmentIndex = 0
         }
     }
- 
+    
     
     override func viewWillAppear(_ animated: Bool)
     {
+        let currentTime = NSDate()
+        if(currentTime.timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate > 10)
+        {
+            print(currentTime.timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate)
+            print("RESET")
+            let reset = 0
+            defaults.set(reset, forKey: "myPercent")
+            defaults.set(reset, forKey: "myPeople")
+            defaults.set("", forKey: "myBill")
+        }
+        let background = defaults.string(forKey: "myInterface")
+        if(background == ".dark")
+        {
+             overrideUserInterfaceStyle = .dark
+        }
+        else
+        {
+             overrideUserInterfaceStyle = .light
+        }
         self.billField.alpha = 0
         self.tipLabel.alpha = 0
         self.totalLabel.alpha = 0
-        let bill = Double(billField.text!) ?? 0.0
-        if(first == true)
+        //let bill = Double(billField.text!) ?? 0.0
+       /* if(first == true)
         {
+            print("FIRST EQUALS TRUE")
             percentageController.selectedSegmentIndex = 0
             peopleController.selectedSegmentIndex = 0
             first = false
-        }
+        }*/
         percentageController.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
         peopleController.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
+        billField.text = "$" + (defaults.string(forKey: "myBill") ?? "0")
         super.viewWillAppear(animated)
         calculateTip(self)
        /*
@@ -142,7 +172,10 @@ class ViewController: UIViewController {
         
         
     }
-    
+    @IBAction func updateTime(_ sender: Any)
+    {
+        startTime = NSDate()
+    }
     @IBAction func ontap(_ sender: Any)
     {
         print("ontap")
@@ -211,6 +244,8 @@ class ViewController: UIViewController {
                         }
                         let tip = bill * percentArray[percentage]
                         let total = (bill + tip)/Double(peopleArray[peeps])
+                        defaults.set(bill, forKey: "myBill")
+                        defaults.synchronize()
                         tipLabel.text = "$" + addCommas(val: tip)
                         totalLabel.text = "$" + addCommas(val: total)
                         //billField.text = addCommas(val: bill)
