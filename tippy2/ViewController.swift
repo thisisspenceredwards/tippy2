@@ -6,8 +6,8 @@
 //  Copyright © 2019 Spencer. All rights reserved.
 //
 
-import UIKit
 
+import UIKit
 
 class ViewController: UIViewController {
       let defaults = UserDefaults.standard
@@ -15,11 +15,14 @@ class ViewController: UIViewController {
       var startPerson = true
       var open = true
       var first = true
+    var currency = "$"
     @IBOutlet weak var peopleController: UISegmentedControl!
     @IBOutlet weak var percentageController: UISegmentedControl!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    
+ 
     
     
     override func viewDidLoad() {
@@ -27,6 +30,7 @@ class ViewController: UIViewController {
         print("viewdidload")
         if(open == true)
         {
+            billField.text = "$"
             billField.becomeFirstResponder()
             open = false
            // percentageController.selectedSegmentIndex = 0
@@ -37,9 +41,27 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool)
     {
-       
+        self.billField.alpha = 0
+        self.tipLabel.alpha = 0
+        self.totalLabel.alpha = 0
+        let bill = Double(billField.text!) ?? 0.0
+        if(first == true)
+        {
+            percentageController.selectedSegmentIndex = 0
+            peopleController.selectedSegmentIndex = 0
+            first = false
+        }
+        percentageController.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
+        peopleController.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
+        super.viewWillAppear(animated)
+        calculateTip(self)
+       /*
         super.viewWillAppear(animated)  //bad repeated code below, would make helper function if i was more familiar with swift
-               self.billField.alpha = 0
+        if(billField.text?.isEmpty ?? true)
+        {
+            billField?.placeholder = currency
+        }
+        self.billField.alpha = 0
                self.tipLabel.alpha = 0
                self.totalLabel.alpha = 0
                let bill =
@@ -69,23 +91,46 @@ class ViewController: UIViewController {
                                 peeps = defaults.integer(forKey: "myPeople")
                                 print("this is first peep")
                                 print(peeps)
+                           
+        
                              if(bill <= 0.0)
                             {
+                                
                                 tipLabel.text = String(format:"$%.2f", 0.0)
                                     totalLabel.text = String(format:"$%.2f", 0.0)
                             }
                             else
                              {
-                             let tip = bill * percentArray[percentage]
-                             let total = (bill + tip)/Double(peopleArray[peeps])
-                             tipLabel.text = String(format:"$%.2f", tip)
-                             totalLabel.text = String(format: "$%.2f", total)
+                                let tip = bill * percentArray[percentage]
+                                let total = (bill + tip)/Double(peopleArray[peeps])
+                                print("here")
+                                tipLabel.text = addCommas(val: tip)
+                                totalLabel.text = addCommas(val: total)
+                                billField.text = addCommas(val: bill)
                             }
     
-                    
+                 */
                 
     }
-    
+    func addCommas(val: Double) -> String
+    {
+        print("addCommas")
+        var str = String(format:"%.2f",  val) //to guarantee 3 characters before the first integer value
+        for n in stride(from: str.count-6, to: -1, by: -3)
+        {
+            if(n == 0)
+            {
+                break
+            }
+            print("for loop")
+            let char = str.index(str.startIndex,offsetBy: n)
+            str.insert( "," , at: str.index(str.startIndex, offsetBy: n))
+            print(str[char])
+        }
+        print(str)
+        return str
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("viewdidappear")
@@ -123,8 +168,13 @@ class ViewController: UIViewController {
     }
     @IBAction func calculateTip(_ sender: Any)
     {
-        
-          let bill = Double(billField.text!) ?? 0.0
+       // if(billField.text!.isEmpty())
+        var strBill = billField.text
+        if(strBill!.first == Character(currency))
+        {
+            strBill = String(strBill!.dropFirst())
+        }
+          let bill = Double(strBill!) ?? 0.0
                           if(bill <= 0.0)
                           {
                               tipLabel.text = String(format:"$%.2f", 0.0)
@@ -161,8 +211,11 @@ class ViewController: UIViewController {
                         }
                         let tip = bill * percentArray[percentage]
                         let total = (bill + tip)/Double(peopleArray[peeps])
-                        tipLabel.text = String(format:"$%.2f", tip)
-                        totalLabel.text = String(format: "$%.2f", total)
+                        tipLabel.text = "$" + addCommas(val: tip)
+                        totalLabel.text = "$" + addCommas(val: total)
+                        //billField.text = addCommas(val: bill)
+                          // tipLabel.text = addCommas(val: tip)
+                          //  totalLabel.text = String(format: "$%.2f", total)
                      }
             
             
