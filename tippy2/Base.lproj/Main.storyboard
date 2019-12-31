@@ -32,7 +32,6 @@
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
                                 <connections>
-                                    <action selector="billFieldChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="sA8-UE-u9W"/>
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="zss-BJ-P9j"/>
                                     <action selector="updateTime:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="U8h-wm-F4n"/>
                                 </connections>

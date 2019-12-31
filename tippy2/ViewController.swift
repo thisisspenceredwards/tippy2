@@ -17,21 +17,14 @@ class ViewController: UIViewController {
     var first = true
     var startTime = NSDate()
     var currency = "$"
+    var dividerSymbol = ","
     @IBOutlet weak var peopleController: UISegmentedControl!
     @IBOutlet weak var percentageController: UISegmentedControl!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     
-   // func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool
-    // {
-    //  return true
-   // }
 
-    //func application(application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool
-    //{
-     // return true
-    //}
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewdidload")
@@ -42,15 +35,41 @@ class ViewController: UIViewController {
             open = false
             defaults.set(".dark", forKey: "myInterface")
             overrideUserInterfaceStyle = .dark
-           // percentageController.selectedSegmentIndex = 0
-           // peopleController.selectedSegmentIndex = 0
         }
     }
-    
-    
+  
+    func formatBill(val: String)
+    {
+        let length = val.count
+        var index = 0
+        for n in val
+        {
+            if(String(n) == ".")
+            {
+                break
+            }
+             index+=1
+        }
+        var integer = val.prefix(index)
+        for n in stride(from: index-3, to: -1, by: -3)
+        {
+            if(n == 0)
+            {
+                break
+            }
+            integer.insert( "," , at: integer.index(integer.startIndex, offsetBy: n))
+        }
+        let double = val.suffix(length - index)
+        let strBill = "$" + integer + double
+        billField.text = strBill
+    }
+ 
     override func viewWillAppear(_ animated: Bool)
     {
         let currentTime = NSDate()
+        print("time and stuff")
+         print(currentTime.timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate)
+        
         if(currentTime.timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate > 10)
         {
             print(currentTime.timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate)
@@ -72,75 +91,12 @@ class ViewController: UIViewController {
         self.billField.alpha = 0
         self.tipLabel.alpha = 0
         self.totalLabel.alpha = 0
-        //let bill = Double(billField.text!) ?? 0.0
-       /* if(first == true)
-        {
-            print("FIRST EQUALS TRUE")
-            percentageController.selectedSegmentIndex = 0
-            peopleController.selectedSegmentIndex = 0
-            first = false
-        }*/
         percentageController.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
         peopleController.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
+        print("this is defaults.string" + (defaults.string(forKey: "myBill") ?? "0"))
         billField.text = "$" + (defaults.string(forKey: "myBill") ?? "0")
         super.viewWillAppear(animated)
         calculateTip(self)
-       /*
-        super.viewWillAppear(animated)  //bad repeated code below, would make helper function if i was more familiar with swift
-        if(billField.text?.isEmpty ?? true)
-        {
-            billField?.placeholder = currency
-        }
-        self.billField.alpha = 0
-               self.tipLabel.alpha = 0
-               self.totalLabel.alpha = 0
-               let bill =
-                Double(billField.text!) ?? 0.0
-        if(first == true)
-        {
-            percentageController.selectedSegmentIndex = 0
-            peopleController.selectedSegmentIndex = 0
-            first = false
-        }
-        else
-        {
-               percentageController.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
-               peopleController.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
-        }
-                               let defaults = UserDefaults.standard
-                               let percentArray = [0.1, 0.15, 0.2, 0.25]
-                               let peopleArray = [ 1, 2, 3, 4, 5, 6, 7, 8,]
-                               //let percentage = percentArray[tipControl.selectedSegmentIndex]
-                               //let peeps = Double(peopleArray[numberOfPeopleController.selectedSegmentIndex])
-                              var percentage = 0
-                              var peeps = 0
-                                
-                                percentage = defaults.integer(forKey: "myPercent")
-                                print("percentage:")
-                                print(percentage)
-                                peeps = defaults.integer(forKey: "myPeople")
-                                print("this is first peep")
-                                print(peeps)
-                           
-        
-                             if(bill <= 0.0)
-                            {
-                                
-                                tipLabel.text = String(format:"$%.2f", 0.0)
-                                    totalLabel.text = String(format:"$%.2f", 0.0)
-                            }
-                            else
-                             {
-                                let tip = bill * percentArray[percentage]
-                                let total = (bill + tip)/Double(peopleArray[peeps])
-                                print("here")
-                                tipLabel.text = addCommas(val: tip)
-                                totalLabel.text = addCommas(val: total)
-                                billField.text = addCommas(val: bill)
-                            }
-    
-                 */
-                
     }
     func addCommas(val: Double) -> String
     {
@@ -159,7 +115,6 @@ class ViewController: UIViewController {
         }
         print(str)
         return str
-        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -169,8 +124,6 @@ class ViewController: UIViewController {
         self.tipLabel.alpha = 1.0
         self.totalLabel.alpha = 1.0
         }
-        
-        
     }
     @IBAction func updateTime(_ sender: Any)
     {
@@ -199,61 +152,68 @@ class ViewController: UIViewController {
         defaults.synchronize()
         calculateTip(sender)
     }
+    func removeDenomination(val: String) -> String
+    {
+        if(val.first == Character(currency))
+        {
+            return String(val.dropFirst())
+        }
+        return val
+        
+    }
+    func removeCommas(val: String) -> String
+    {
+        return val.replacingOccurrences(of: ",", with: "")
+    }
+    
     @IBAction func calculateTip(_ sender: Any)
     {
-       // if(billField.text!.isEmpty())
-        var strBill = billField.text
-        if(strBill!.first == Character(currency))
-        {
-            strBill = String(strBill!.dropFirst())
-        }
-          let bill = Double(strBill!) ?? 0.0
-                          if(bill <= 0.0)
-                          {
-                              tipLabel.text = String(format:"$%.2f", 0.0)
-                              totalLabel.text = String(format:"$%.2f", 0.0)
-                          }
-                          else
-                          {
-                          let defaults = UserDefaults.standard
-                          let percentArray = [0.1, 0.15, 0.2, 0.25]
-                          let peopleArray = [ 1, 2, 3, 4, 5, 6, 7, 8,]
-                          //let percentage = percentArray[tipControl.selectedSegmentIndex]
-                          //let peeps = Double(peopleArray[numberOfPeopleController.selectedSegmentIndex])
-                         var percentage = 0
-                         var peeps = 0
-                        if(startPerson == true)
-                        {
-                            startPerson = false
-                            
-                            defaults.set(peeps, forKey: "myPeople")
-                        }
-                        else if(startPercent == true)
-                        {
-                            startPercent = false
-                            defaults.set(percentage, forKey: "myPercent")
-                        }
-                        else
-                        {
-                           percentage = defaults.integer(forKey: "myPercent")
-                           print("percentage:")
-                           print(percentage)
-                           peeps = defaults.integer(forKey: "myPeople")
-                           print("this is first peep")
-                           print(peeps)
-                        }
-                        let tip = bill * percentArray[percentage]
-                        let total = (bill + tip)/Double(peopleArray[peeps])
-                        defaults.set(bill, forKey: "myBill")
-                        defaults.synchronize()
-                        tipLabel.text = "$" + addCommas(val: tip)
-                        totalLabel.text = "$" + addCommas(val: total)
-                        //billField.text = addCommas(val: bill)
-                          // tipLabel.text = addCommas(val: tip)
-                          //  totalLabel.text = String(format: "$%.2f", total)
-                     }
-            
-            
+        print("cal tip")
+        var strBill = removeDenomination(val: billField.text!)
+        strBill = removeCommas(val: strBill)
+        formatBill(val: strBill)
+        print(strBill)
+      
+        let bill = Double(strBill) ?? 0.0
+        
+            if(bill <= 0.0)
+            {
+                print("THIS IS IF OF TIP")
+                tipLabel.text = String(format:"$%.2f", 0.0)
+                totalLabel.text = String(format:"$%.2f", 0.0)
+                defaults.set("", forKey: "myBill")
+            }
+            else
+            {
+                print("THIS IS ELSE OF TIP")
+               defaults.set(strBill, forKey: "myBill")
+                let defaults = UserDefaults.standard
+                let percentArray = [0.1, 0.15, 0.2, 0.25]
+                let peopleArray = [ 1, 2, 3, 4, 5, 6, 7, 8,]
+                var percentage = 0
+                var peeps = 0
+                if(startPerson == true)
+                {
+                    startPerson = false
+                    defaults.set(peeps, forKey: "myPeople")
+                }
+                else if(startPercent == true)
+                {
+                    startPercent = false
+                    defaults.set(percentage, forKey: "myPercent")
+                }
+                else
+                {
+                    percentage = defaults.integer(forKey: "myPercent")
+                    peeps = defaults.integer(forKey: "myPeople")
+                }
+                let tip = bill * percentArray[percentage]
+                let total = (bill + tip)/Double(peopleArray[peeps])
+                defaults.set(bill, forKey: "myBill")
+                defaults.synchronize()
+                tipLabel.text = "$" + addCommas(val: tip)
+                totalLabel.text = "$" + addCommas(val: total)
+                }
     }
     
 }
