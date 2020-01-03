@@ -18,16 +18,25 @@ class ViewController: UIViewController {
     var startTime = NSDate()
     var currency = "$"
     var dividerSymbol = ","
+    var originalHeight = CGFloat(0.0)
+    var billLength = 0
     @IBOutlet weak var peopleController: UISegmentedControl!
     @IBOutlet weak var percentageController: UISegmentedControl!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    //@IBOutlet weak var navigationBar: UINavigationController!
+    //@IBOutlet var peopleControllerYconstraint: NSLayoutConstraint!
+    //@IBOutlet var percentageControllerYconstraint: NSLayoutConstraint!
+    @IBOutlet var billFieldHeightconstraint: NSLayoutConstraint!
+    //@IBOutlet var tipYconstraint: NSLayoutConstraint!
+    //@IBOutlet var totalYconstraint: NSLayoutConstraint!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewdidload")
+        
         if(open == true)
         {
             billField.text = "$"
@@ -38,6 +47,7 @@ class ViewController: UIViewController {
         }
     }
   
+
     func formatBill(val: String)
     {
         let length = val.count
@@ -64,8 +74,31 @@ class ViewController: UIViewController {
         billField.text = strBill
     }
  
+    @IBAction func animation(_ sender: Any)
+    {
+        let lengthOfBillText = String(billField.text ?? "").count
+    print("HERE")
+        if(self.billLength != lengthOfBillText && self.billFieldHeightconstraint.constant != self.originalHeight)
+        {
+            self.billLength = lengthOfBillText
+           // UIView.animate(withDuration: 1.0, options: [.curveEaseOut])
+            UIView.animate(withDuration: 1.0)
+            {
+                self.billFieldHeightconstraint.constant = self.originalHeight
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+    
+    }
     override func viewWillAppear(_ animated: Bool)
     {
+        self.originalHeight = billFieldHeightconstraint.constant
+        billFieldHeightconstraint.constant = view.bounds.height - billFieldHeightconstraint.constant
+        
+     //   billField.constant -= view.bounds.width
+     //   usernameTextFieldCenterConstraint.constant -= view.bounds.width
+     //   passwordTextFieldCenterConstraint.constant -= view.bounds.width
         let currentTime = NSDate()
         print("time and stuff")
          print(currentTime.timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate)
@@ -94,7 +127,9 @@ class ViewController: UIViewController {
         percentageController.selectedSegmentIndex = defaults.integer(forKey: "myPercent")
         peopleController.selectedSegmentIndex = defaults.integer(forKey: "myPeople")
         print("this is defaults.string" + (defaults.string(forKey: "myBill") ?? "0"))
-        billField.text = "$" + (defaults.string(forKey: "myBill") ?? "0")
+        let double = defaults.double(forKey:"myBill")
+        print("this is double: " + String(double))
+        billField.text = "$" + (defaults.string(forKey: "myBill") ?? "")
         super.viewWillAppear(animated)
         calculateTip(self)
     }
@@ -166,26 +201,25 @@ class ViewController: UIViewController {
         return val.replacingOccurrences(of: ",", with: "")
     }
     
+    
+    
+    
     @IBAction func calculateTip(_ sender: Any)
     {
-        print("cal tip")
+        
         var strBill = removeDenomination(val: billField.text!)
         strBill = removeCommas(val: strBill)
         formatBill(val: strBill)
-        print(strBill)
-      
         let bill = Double(strBill) ?? 0.0
         
             if(bill <= 0.0)
             {
-                print("THIS IS IF OF TIP")
                 tipLabel.text = String(format:"$%.2f", 0.0)
                 totalLabel.text = String(format:"$%.2f", 0.0)
                 defaults.set("", forKey: "myBill")
             }
             else
             {
-                print("THIS IS ELSE OF TIP")
                defaults.set(strBill, forKey: "myBill")
                 let defaults = UserDefaults.standard
                 let percentArray = [0.1, 0.15, 0.2, 0.25]

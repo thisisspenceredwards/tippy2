@@ -15,38 +15,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAk-7e-X1G">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAk-7e-X1G">
                                 <rect key="frame" x="0.0" y="164" width="375" height="104"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="104" id="YCh-Al-lyC"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="lJX-D6-Pq3">
-                                <rect key="frame" x="0.0" y="61" width="375" height="104"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
-                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
-                                <connections>
-                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="zss-BJ-P9j"/>
-                                    <action selector="updateTime:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="U8h-wm-F4n"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-yJ-gYf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wfg-yJ-gYf">
                                 <rect key="frame" x="0.0" y="338" width="375" height="114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="114" id="JkX-K5-0b2"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xab-Iz-nPQ">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Xl-ZH-K2f">
+                                <rect key="frame" x="0.0" y="268" width="375" height="32"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <segments>
+                                    <segment title="10%"/>
+                                    <segment title="15%"/>
+                                    <segment title="20%"/>
+                                    <segment title="25%"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <connections>
+                                    <action selector="percentageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Fn7-m6-AxZ"/>
+                                    <action selector="updateTime:" destination="BYZ-38-t0r" eventType="valueChanged" id="sRB-kd-7ew"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xab-Iz-nPQ">
                                 <rect key="frame" x="0.0" y="308" width="375" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 <segments>
                                     <segment title="1"/>
@@ -64,25 +69,41 @@
                                     <action selector="updateTime:" destination="BYZ-38-t0r" eventType="valueChanged" id="VLl-o1-CXi"/>
                                 </connections>
                             </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="5Xl-ZH-K2f">
-                                <rect key="frame" x="0.0" y="268" width="375" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <segments>
-                                    <segment title="10%"/>
-                                    <segment title="15%"/>
-                                    <segment title="20%"/>
-                                    <segment title="25%"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="$" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="lJX-D6-Pq3">
+                                <rect key="frame" x="0.0" y="63" width="375" height="101"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="101" id="F3C-4A-kQO"/>
+                                </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="60"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" keyboardAppearance="alert"/>
                                 <connections>
-                                    <action selector="percentageChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Fn7-m6-AxZ"/>
-                                    <action selector="updateTime:" destination="BYZ-38-t0r" eventType="valueChanged" id="sRB-kd-7ew"/>
+                                    <action selector="animation:" destination="BYZ-38-t0r" eventType="editingChanged" id="6M1-5M-kBp"/>
+                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="editingChanged" id="zss-BJ-P9j"/>
+                                    <action selector="updateTime:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="U8h-wm-F4n"/>
                                 </connections>
-                            </segmentedControl>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="5Xl-ZH-K2f" firstAttribute="leading" secondItem="Wfg-yJ-gYf" secondAttribute="leading" id="3p2-ml-XHV"/>
+                            <constraint firstItem="SAk-7e-X1G" firstAttribute="top" secondItem="lJX-D6-Pq3" secondAttribute="bottom" id="8C8-KM-2L1"/>
+                            <constraint firstItem="5Xl-ZH-K2f" firstAttribute="top" secondItem="SAk-7e-X1G" secondAttribute="bottom" id="EKY-kw-2xf"/>
+                            <constraint firstItem="lJX-D6-Pq3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FCr-fy-kbp"/>
+                            <constraint firstItem="SAk-7e-X1G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jaw-Qx-n2q"/>
+                            <constraint firstItem="5Xl-ZH-K2f" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LgJ-uC-0AY"/>
+                            <constraint firstItem="5Xl-ZH-K2f" firstAttribute="trailing" secondItem="Wfg-yJ-gYf" secondAttribute="trailing" id="Rsw-QR-lJE"/>
+                            <constraint firstItem="5Xl-ZH-K2f" firstAttribute="leading" secondItem="xab-Iz-nPQ" secondAttribute="leading" id="ZQm-kI-omr"/>
+                            <constraint firstItem="SAk-7e-X1G" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eAG-KS-NGt"/>
+                            <constraint firstItem="5Xl-ZH-K2f" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="euQ-Q3-mCw"/>
+                            <constraint firstItem="lJX-D6-Pq3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="h9x-YV-ojM"/>
+                            <constraint firstItem="xab-Iz-nPQ" firstAttribute="top" secondItem="5Xl-ZH-K2f" secondAttribute="bottom" constant="9" id="kFn-k5-zLB"/>
+                            <constraint firstItem="5Xl-ZH-K2f" firstAttribute="trailing" secondItem="xab-Iz-nPQ" secondAttribute="trailing" id="prf-Vg-0lC"/>
+                            <constraint firstItem="Wfg-yJ-gYf" firstAttribute="top" secondItem="5Xl-ZH-K2f" secondAttribute="bottom" constant="39" id="sIf-Gr-npS"/>
+                            <constraint firstItem="lJX-D6-Pq3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="19" id="wSr-qh-mse"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="EKF-U4-THB" appends="YES" id="Qya-K1-EB5"/>
@@ -97,6 +118,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="lJX-D6-Pq3" id="fD3-WG-Rqu"/>
+                        <outlet property="billFieldHeightconstraint" destination="F3C-4A-kQO" id="Hun-Tx-tZj"/>
                         <outlet property="peopleController" destination="xab-Iz-nPQ" id="RpB-ZO-qUb"/>
                         <outlet property="percentageController" destination="5Xl-ZH-K2f" id="iYI-cx-BeS"/>
                         <outlet property="tipLabel" destination="SAk-7e-X1G" id="2NZ-86-455"/>
